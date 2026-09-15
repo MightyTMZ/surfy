@@ -1,7 +1,7 @@
 # Surfy — Grill Me Skill
 
 ## When to activate
-Activate this skill when the user asks you to "grill me", "ask me clarifying questions", or wants you to deeply understand their project idea before you start building.
+Activate this skill whenever the requirements or specification for a project/feature is not clear. Alawys activate if the user asks you to "grill me", "ask me clarifying questions", or wants you to deeply understand their project idea before you start building.
 
 ## Behavior
 
