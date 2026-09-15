@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#09070d" />
+    <title>Surfy — Snap to Start</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <main class="stage" id="stage">
+      <div class="grain" aria-hidden="true"></div>
+      <div class="ambient ambient--one" aria-hidden="true"></div>
+      <div class="ambient ambient--two" aria-hidden="true"></div>
+
+      <header class="topbar">
+        <a class="brand" href="#" aria-label="Surfy home">
+          <span class="brand__mark">S</span>
+          <span>SURFY</span>
+        </a>
+        <div class="status"><span class="status__dot"></span> CONTEXT LOCKED</div>
+      </header>
+
+      <section class="intro" aria-labelledby="title">
+        <p class="eyebrow">ONE LAST THING</p>
+        <h1 id="title"><span>READY</span> <span>WHEN</span><br /><em>YOU ARE.</em></h1>
+        <p class="lede">I have everything I need. Snap the gauntlet<br class="wide-only" /> and let’s make something unreal.</p>
+      </section>
+
+      <section class="gauntlet-zone" aria-label="Interactive snap control">
+        <div class="orbit orbit--outer" aria-hidden="true"></div>
+        <div class="orbit orbit--inner" aria-hidden="true"></div>
+        <div class="shockwave" aria-hidden="true"></div>
+        <div class="flash" aria-hidden="true"></div>
+        <div class="particles" id="particles" aria-hidden="true"></div>
+
+        <button class="gauntlet" id="snapButton" type="button" aria-label="Snap the gauntlet to begin">
+          <svg viewBox="0 0 520 640" role="img" aria-labelledby="gauntletTitle gauntletDesc">
+            <title id="gauntletTitle">Golden cosmic gauntlet</title>
+            <desc id="gauntletDesc">A stylized golden gauntlet set with six glowing stones, poised to snap.</desc>
+            <defs>
+              <linearGradient id="gold" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0" stop-color="#fff0a7" />
+                <stop offset=".22" stop-color="#d69a24" />
+                <stop offset=".55" stop-color="#8e4c0d" />
+                <stop offset=".78" stop-color="#efb83e" />
+                <stop offset="1" stop-color="#6a320b" />
+              </linearGradient>
+              <linearGradient id="goldBright" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0" stop-color="#ffefa2" />
+                <stop offset=".48" stop-color="#c47c16" />
+                <stop offset="1" stop-color="#733207" />
+              </linearGradient>
+              <linearGradient id="shadowGold" x1="0" x2="1">
+                <stop stop-color="#542204" />
+                <stop offset=".52" stop-color="#a45d10" />
+                <stop offset="1" stop-color="#3a1603" />
+              </linearGradient>
+              <radialGradient id="purpleStone">
+                <stop offset="0" stop-color="#fff" />
+                <stop offset=".18" stop-color="#e7bcff" />
+                <stop offset=".52" stop-color="#9c35ff" />
+                <stop offset="1" stop-color="#310067" />
+              </radialGradient>
+              <radialGradient id="blueStone"><stop offset="0" stop-color="#fff"/><stop offset=".22" stop-color="#9ff7ff"/><stop offset=".58" stop-color="#00aaff"/><stop offset="1" stop-color="#00408e"/></radialGradient>
+              <radialGradient id="redStone"><stop offset="0" stop-color="#fff"/><stop offset=".2" stop-color="#ffb09e"/><stop offset=".55" stop-color="#ff3d24"/><stop offset="1" stop-color="#790800"/></radialGradient>
+              <radialGradient id="orangeStone"><stop offset="0" stop-color="#fff"/><stop offset=".2" stop-color="#fff19c"/><stop offset=".58" stop-color="#ff9d13"/><stop offset="1" stop-color="#8b3300"/></radialGradient>
+              <radialGradient id="greenStone"><stop offset="0" stop-color="#fff"/><stop offset=".2" stop-color="#adffd1"/><stop offset=".58" stop-color="#17dc67"/><stop offset="1" stop-color="#006330"/></radialGradient>
+              <radialGradient id="yellowStone"><stop offset="0" stop-color="#fff"/><stop offset=".2" stop-color="#fffcc0"/><stop offset=".58" stop-color="#ffe02b"/><stop offset="1" stop-color="#9c6a00"/></radialGradient>
+              <filter id="stoneGlow" x="-100%" y="-100%" width="300%" height="300%">
+                <feGaussianBlur stdDeviation="8" result="blur" />
+                <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+              </filter>
+              <filter id="handShadow" x="-30%" y="-30%" width="160%" height="170%">
+                <feDropShadow dx="0" dy="22" stdDeviation="18" flood-color="#000" flood-opacity=".65" />
+              </filter>
+            </defs>
+
+            <g class="hand" filter="url(#handShadow)">
+              <path class="cuff" d="M139 478 L385 472 L413 624 Q275 655 112 621 Z" fill="url(#shadowGold)" stroke="#d79724" stroke-width="5"/>
+              <path d="M151 486 L377 482 L388 596 Q271 625 130 594 Z" fill="url(#gold)" stroke="#f1bd48" stroke-width="4"/>
+              <path d="M151 523 Q269 555 383 518" fill="none" stroke="#5d2907" stroke-width="12" opacity=".62"/>
+              <path d="M147 565 Q268 596 388 554" fill="none" stroke="#5d2907" stroke-width="9" opacity=".55"/>
+              <path d="M182 493 L172 607 M237 501 L232 617 M294 501 L299 615 M348 491 L361 601" stroke="#f4c55b" stroke-width="5" opacity=".55"/>
+
+              <path class="palm" d="M145 252 Q175 202 227 196 Q297 177 359 220 Q399 252 397 344 L382 491 Q268 534 144 484 L120 365 Q107 303 145 252Z" fill="url(#goldBright)" stroke="#edbd4d" stroke-width="6"/>
+              <path d="M151 313 Q258 262 382 309 M137 371 Q264 329 393 369 M143 433 Q269 395 387 427" fill="none" stroke="#713307" stroke-width="12" opacity=".46"/>
+              <path d="M172 273 Q247 233 330 259 L359 339 Q269 375 172 337Z" fill="#6d3008" opacity=".5"/>
+
+              <g class="finger finger--index">
+                <path d="M193 259 Q168 240 172 203 L188 63 Q193 19 228 18 Q265 18 269 62 L261 209 Q260 241 237 269Z" fill="url(#gold)" stroke="#edbd4d" stroke-width="6"/>
+                <path d="M183 157 Q221 171 264 159 M178 211 Q221 229 259 213 M192 101 Q226 112 265 103" fill="none" stroke="#713307" stroke-width="10" opacity=".52"/>
+              </g>
+
+              <g class="finger finger--middle">
+                <path d="M260 274 Q251 238 255 198 L261 142 Q265 116 295 113 Q327 113 335 142 L338 207 Q338 247 320 278Z" fill="url(#goldBright)" stroke="#f2c957" stroke-width="6"/>
+                <path d="M256 207 Q295 219 337 207 M260 158 Q298 170 335 158" fill="none" stroke="#713307" stroke-width="10" opacity=".54"/>
+                <g class="middle-tip">
+                  <path d="M263 151 L272 55 Q276 15 307 14 Q340 15 341 56 L332 151 Q301 171 263 151Z" fill="url(#goldBright)" stroke="#f2c957" stroke-width="6"/>
+                  <path d="M268 108 Q302 120 337 110 M272 67 Q305 78 340 69" fill="none" stroke="#713307" stroke-width="10" opacity=".54"/>
+                  <ellipse class="stone stone--red" cx="306" cy="53" rx="18" ry="23" fill="url(#redStone)" filter="url(#stoneGlow)" />
+                </g>
+              </g>
+
+              <g class="finger finger--ring">
+                <path d="M327 239 Q315 214 321 181 L343 76 Q351 41 381 47 Q413 54 409 91 L395 210 Q391 242 371 260Z" fill="url(#gold)" stroke="#edbd4d" stroke-width="6"/>
+                <path d="M331 139 Q368 151 402 147 M321 190 Q362 204 397 197 M343 99 Q376 108 407 104" fill="none" stroke="#713307" stroke-width="9" opacity=".52"/>
+              </g>
+
+              <g class="finger finger--pinky">
+                <path d="M383 274 Q378 247 389 220 L421 139 Q434 106 461 118 Q490 131 479 166 L448 255 Q438 284 416 296Z" fill="url(#goldBright)" stroke="#efc254" stroke-width="6"/>
+                <path d="M404 184 Q439 201 473 197 M389 231 Q425 250 458 245" fill="none" stroke="#713307" stroke-width="9" opacity=".54"/>
+              </g>
+
+              <g class="finger finger--thumb">
+                <path d="M179 410 Q153 425 128 408 L57 355 Q27 334 40 305 Q54 276 86 286 L177 339 Q207 357 202 382 Q198 399 179 410Z" fill="url(#goldBright)" stroke="#f0c255" stroke-width="6"/>
+                <path d="M67 302 Q92 332 121 360 M111 302 Q136 331 165 351 M73 363 Q104 386 135 405" fill="none" stroke="#713307" stroke-width="9" opacity=".52"/>
+                <path d="M145 399 Q163 411 181 397" fill="none" stroke="#ffda70" stroke-width="5" opacity=".55"/>
+                <path d="M111 329 L169 354" fill="none" stroke="#ffd86d" stroke-width="5" opacity=".65"/>
+                <ellipse class="stone stone--yellow" cx="87" cy="329" rx="19" ry="23" fill="url(#yellowStone)" filter="url(#stoneGlow)" />
+              </g>
+
+              <g class="snap-spark" aria-hidden="true">
+                <circle cx="250" cy="220" r="8" fill="#fff"/>
+                <path d="M250 192V206 M250 234V248 M222 220H236 M264 220H278 M230 200L240 210 M260 230L270 240 M270 200L260 210 M240 230L230 240" stroke="#ffeebb" stroke-width="4" stroke-linecap="round"/>
+              </g>
+
+              <path d="M150 301 Q259 253 382 304" fill="none" stroke="#ffdc73" stroke-width="5" opacity=".6"/>
+              <path d="M161 442 Q270 476 373 438" fill="none" stroke="#f9cf68" stroke-width="5" opacity=".5"/>
+
+              <g class="stones" filter="url(#stoneGlow)">
+                <ellipse class="stone stone--blue" cx="220" cy="73" rx="18" ry="23" fill="url(#blueStone)" />
+                <ellipse class="stone stone--orange" cx="371" cy="101" rx="17" ry="21" fill="url(#orangeStone)" />
+                <ellipse class="stone stone--green" cx="445" cy="157" rx="16" ry="20" fill="url(#greenStone)" />
+                <ellipse class="stone stone--purple" cx="273" cy="324" rx="37" ry="45" fill="url(#purpleStone)" />
+              </g>
+              <g fill="none" stroke="#ffd86d" stroke-width="5" opacity=".65">
+                <path d="M205 276 L220 104"/><path d="M322 275 L365 126"/><path d="M367 295 L430 177"/>
+              </g>
+            </g>
+          </svg>
+        </button>
+
+        <div class="success" aria-live="polite">
+          <span class="success__line"></span>
+          <p>SNAP CONFIRMED</p>
+          <strong>LET’S GET TO WORK.</strong>
+          <button class="replay" id="replayButton" type="button">REPLAY ANIMATION</button>
+        </div>
+      </section>
+
+      <footer class="controls">
+        <button class="snap-cta" id="snapCta" type="button">
+          <span class="snap-cta__icon">✦</span>
+          <span>SNAP TO START</span>
+          <kbd>SPACE</kbd>
+        </button>
+        <p id="helper">Click the gauntlet or press space</p>
+      </footer>
+    </main>
+    <script src="./script.js"></script>
+  </body>
+</html>
