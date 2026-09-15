@@ -9,6 +9,15 @@ import sys
 
 STONE_NAMES = ["Power", "Space", "Reality", "Soul", "Time", "Mind"]
 
+_STONE_GLYPHS = {
+    "Power": "🟣",
+    "Space": "🔵",
+    "Reality": "🔴",
+    "Soul": "🟠",
+    "Time": "🟢",
+    "Mind": "🟡",
+}
+
 # ANSI escape codes
 _RST  = "\033[0m"
 _BOLD = "\033[1m"
@@ -93,16 +102,18 @@ def render(answered: int, total: int, *, color: bool | None = None) -> str:
     # Stones
     for i, name in enumerate(STONE_NAMES):
         is_lit = i < lit
-        gem_char = "◆" if is_lit else "◇"
+        gem_char = _STONE_GLYPHS[name] if is_lit else "◇"
         bar_char = "█" * BAR_LEN if is_lit else "░" * BAR_LEN
         plain = f"  {gem_char} {name:<8s} {bar_char}  "
+        # Colored-circle emoji occupy two terminal cells despite being one code point.
+        display_len = len(plain) + (1 if is_lit else 0)
 
         if color:
             c = _COLORS[name] if is_lit else _DIM
             styled = f"  {c}{gem_char}{_RST} {c}{name:<8s}{_RST} {c}{bar_char}{_RST}  "
-            lines.append(row(styled, len(plain)))
+            lines.append(row(styled, display_len))
         else:
-            lines.append(row(plain, len(plain)))
+            lines.append(row(plain, display_len))
 
     lines.append(f"  ├{'─' * W}┤")
 
