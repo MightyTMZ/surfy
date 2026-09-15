@@ -6,7 +6,7 @@ Plan:
 
 - Fork a "grill me" skill or close equilvalent
 - Modify it to call Surfy once full clarity or context is achieved
-- Finish message is somehting like "Great! Now I have all the context I need. It's time to snap your infinity gauntlet to make me start producing!"
+- Finish message is somehting like "Great! Now I have all the context I need. It's time to snap your infinity gauntlet to make me start producing!" (the user may choose not to turn on their webcam and so they can click on an on screen button)
 - it then prompts the user to start the Surfy software
 - it then prompts via a question (not permission prompt) for the user to open their web cam
 - if they are unable to, it will boot up a local software gui that they can click the gauntlet to snap
