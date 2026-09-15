@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "surfy"
+version = "0.1.0"
+description = "Snap your Infinity Gauntlet to start your AI workflow"
+requires-python = ">=3.10"
+dependencies = [
+    "mediapipe>=0.10",
+    "opencv-contrib-python>=4.8",
+    "numpy>=1.24",
+]
+
+[project.scripts]
+surfy = "surfy.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["surfy*"]
+
+[tool.setuptools.package-data]
+surfy = ["hand_landmarker.task", "snap/**/*"]
