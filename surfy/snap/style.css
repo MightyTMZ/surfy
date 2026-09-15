@@ -15,6 +15,8 @@ body {
 button { -webkit-tap-highlight-color: transparent; }
 
 .stage {
+  --impact-x: 50vw;
+  --impact-y: 38vh;
   position: relative;
   min-height: 100svh;
   overflow: hidden;
@@ -63,26 +65,33 @@ button { -webkit-tap-highlight-color: transparent; }
 .orbit--outer { width: 95%; aspect-ratio: 1; animation: orbit 26s linear infinite; }
 .orbit--inner { width: 74%; aspect-ratio: 1; border-style: dashed; opacity: .65; animation: orbit 18s linear infinite reverse; }
 
-.stone { animation: stonePulse 2.2s ease-in-out infinite; }
+.stone { transform-box: fill-box; transform-origin: center; animation: stonePulse 2.2s ease-in-out infinite; }
 .stone--red { animation-delay: -.3s; }.stone--orange { animation-delay: -.6s; }.stone--green { animation-delay: -.9s; }.stone--purple { animation-delay: -1.2s; }.stone--yellow { animation-delay: -1.5s; }
 
 .shockwave { position: absolute; z-index: 1; width: 32%; aspect-ratio: 1; top: 34.375%; left: 43.46%; border: 2px solid #f4dcff; border-radius: 50%; opacity: 0; transform: translate(-50%,-50%) scale(.2); }
-.flash { position: fixed; z-index: 50; inset: 0; opacity: 0; pointer-events: none; background: radial-gradient(circle at 50% 50%, white 0, #d3a3ff 10%, rgba(115,34,196,.8) 28%, transparent 70%); }
+.flash { position: fixed; z-index: 50; inset: 0; opacity: 0; pointer-events: none; background: radial-gradient(circle at var(--impact-x) var(--impact-y), white 0, #d3a3ff 10%, rgba(115,34,196,.8) 28%, transparent 70%); }
 .particles { position: fixed; z-index: 42; inset: 0; pointer-events: none; }
-.particle { position: absolute; left: 50%; top: 50%; width: var(--size); height: var(--size); border-radius: 50%; background: var(--color); box-shadow: 0 0 8px var(--color); animation: scatter var(--duration) cubic-bezier(.2,.65,.2,1) forwards; animation-delay: var(--delay); }
+.particle { position: absolute; left: var(--impact-x); top: var(--impact-y); width: var(--size); height: var(--size); border-radius: 50%; background: var(--color); box-shadow: 0 0 8px var(--color); animation: scatter var(--duration) cubic-bezier(.2,.65,.2,1) forwards; animation-delay: var(--delay); }
 
-.snap-spark { opacity: 0; }
+.snap-spark { opacity: 0; transform-box: fill-box; transform-origin: center; }
+.finger { transform-box: view-box; }
+.middle-tip { transform-box: view-box; transform-origin: 300px 130px; }
+.finger--thumb { transform-origin: 180px 380px; }
+.is-snapping .finger--thumb { animation: thumbSnap .78s cubic-bezier(.45,0,.2,1) forwards; }
+.is-snapping .middle-tip { animation: middleSnap .76s cubic-bezier(.45,0,.18,1) forwards; }
 .is-snapping .snap-spark { animation: contactSpark .24s .36s ease-out forwards; }
-.is-snapping .shockwave { animation: shock 1s .68s ease-out forwards; }
-.is-snapping .flash { animation: flash .85s .68s ease-out forwards; }
+.is-snapping .shockwave { animation: shock 1s .56s ease-out forwards; }
+.is-snapping .flash { animation: flash .85s .56s ease-out forwards; }
 .is-snapping .orbit { animation-play-state: paused; }
 .is-complete .gauntlet { animation: dissolve .8s ease-in forwards; }
 .is-complete .orbit { animation: orbitFade .6s forwards; }
 
 @keyframes drift { 50% { transform: translate(24px,-18px); opacity: .45; } }
 @keyframes orbit { to { transform: translate(-50%,-50%) rotate(360deg); } }
-@keyframes stonePulse { 50% { opacity: .72; } }
-@keyframes contactSpark { 0%,100% { opacity: 0; } 35% { opacity: 1; } }
+@keyframes stonePulse { 50% { transform: scale(.88); opacity: .78; } }
+@keyframes thumbSnap { 0% { transform: rotate(0); } 46%,57% { transform: rotate(88deg); } 100% { transform: rotate(76deg); } }
+@keyframes middleSnap { 0% { transform: rotate(0); } 46%,57% { transform: rotate(-140deg); } 100% { transform: rotate(-180deg); } }
+@keyframes contactSpark { 0% { opacity: 0; transform: scale(.25) rotate(0); } 35% { opacity: 1; transform: scale(1.15) rotate(12deg); } 100% { opacity: 0; transform: scale(1.8) rotate(28deg); } }
 @keyframes shock { 0% { opacity: .9; transform: translate(-50%,-50%) scale(.2); } 100% { opacity: 0; transform: translate(-50%,-50%) scale(5); border-width: .2px; } }
 @keyframes flash { 0% { opacity: .9; } 12% { opacity: 1; } 100% { opacity: 0; } }
 @keyframes scatter { 0% { opacity: 1; transform: translate(-50%,-50%) scale(1); } 100% { opacity: 0; transform: translate(var(--x),var(--y)) scale(.1); } }
