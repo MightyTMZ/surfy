@@ -72,7 +72,7 @@ button { -webkit-tap-highlight-color: transparent; }
 .particle { position: absolute; left: 50%; top: 38%; width: var(--size); height: var(--size); border-radius: 50%; background: var(--color); box-shadow: 0 0 8px var(--color); animation: scatter var(--duration) cubic-bezier(.2,.65,.2,1) forwards; animation-delay: var(--delay); }
 
 .snap-spark { opacity: 0; transform-box: fill-box; transform-origin: center; }
-.finger { transform-box: fill-box; }
+.finger { transform: translateX(-24px); transform-box: fill-box; }
 .middle-tip { transform-box: view-box; transform-origin: 300px 130px; }
 .is-snapping .finger--thumb { animation: thumbSnap .78s cubic-bezier(.45,0,.2,1) forwards; transform-origin: 88% 76%; }
 .is-snapping .middle-tip { animation: middleSnap .76s cubic-bezier(.45,0,.18,1) forwards; }
@@ -89,10 +89,10 @@ button { -webkit-tap-highlight-color: transparent; }
 @keyframes drift { 50% { transform: translate(24px,-18px); opacity: .45; } }
 @keyframes orbit { to { transform: translate(-50%,-50%) rotate(360deg); } }
 @keyframes stonePulse { 50% { transform: scale(.88); opacity: .78; } }
-@keyframes thumbSnap { 0% { transform: rotate(0); } 46%,57% { transform: rotate(88deg); } 100% { transform: rotate(76deg); } }
+@keyframes thumbSnap { 0% { transform: translateX(-24px) rotate(0); } 46%,57% { transform: translateX(-24px) rotate(88deg); } 100% { transform: translateX(-24px) rotate(76deg); } }
 @keyframes middleSnap { 0% { transform: rotate(0); } 46%,57% { transform: rotate(-140deg); } 100% { transform: rotate(-180deg); } }
-@keyframes indexReact { 0%,45% { transform: none; } 100% { transform: translate(-5px,8px) rotate(-5deg); } }
-@keyframes curledReact { 0%,45% { transform: none; } 100% { transform: translateY(5px) rotate(3deg); } }
+@keyframes indexReact { 0%,45% { transform: translateX(-24px); } 100% { transform: translate(-29px,8px) rotate(-5deg); } }
+@keyframes curledReact { 0%,45% { transform: translateX(-24px); } 100% { transform: translate(-24px,5px) rotate(3deg); } }
 @keyframes contactSpark { 0% { opacity: 0; transform: scale(.25) rotate(0); } 35% { opacity: 1; transform: scale(1.15) rotate(12deg); } 100% { opacity: 0; transform: scale(1.8) rotate(28deg); } }
 @keyframes handKick { 0% { transform: rotate(0); } 52% { transform: rotate(-4deg) scale(1.02); } 62% { transform: rotate(5deg) scale(.97); } 100% { transform: rotate(0) scale(1); } }
 @keyframes shock { 0% { opacity: .9; transform: translate(-50%,-50%) scale(.2); } 100% { opacity: 0; transform: translate(-50%,-50%) scale(5); border-width: .2px; } }
