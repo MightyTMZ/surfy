@@ -113,5 +113,5 @@ window.addEventListener('keydown', (event) => {
 
 // Auto-play when triggered by webcam snap detection
 if (autoplay) {
-  window.setTimeout(snap, 500);
+  window.requestAnimationFrame(snap);
 }

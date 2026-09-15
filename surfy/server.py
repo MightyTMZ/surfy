@@ -68,7 +68,9 @@ def serve_and_wait(autoplay: bool = False) -> bool:
     thread = threading.Thread(target=server.serve_forever, daemon=True)
     thread.start()
 
-    url = f"http://localhost:{port}/index.html"
+    # Match the IPv4 address the server is bound to. Using "localhost" can make
+    # Safari try ::1 first and wait for that connection to fail before retrying.
+    url = f"http://127.0.0.1:{port}/index.html"
     if autoplay:
         url += "?autoplay=1"
     webbrowser.open(url)

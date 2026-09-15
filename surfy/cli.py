@@ -60,7 +60,7 @@ def cmd_web():
 
 def cmd_gauntlet(answered: int, total: int):
     """Show the gauntlet at a specific progress point."""
-    print(render(answered, total, color=False))
+    print(render(answered, total, color=True))
 
 
 def cmd_demo():

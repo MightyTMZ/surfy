@@ -15,15 +15,15 @@ _BOLD = "\033[1m"
 _DIM  = "\033[2m"
 
 _COLORS = {
-    "Power":   "\033[95m",   # bright magenta
-    "Space":   "\033[94m",   # bright blue
-    "Reality": "\033[91m",   # bright red
-    "Soul":    "\033[93m",   # bright yellow / orange
-    "Time":    "\033[92m",   # bright green
-    "Mind":    "\033[33m",   # yellow
+    "Power":   "\033[38;2;156;53;255m",
+    "Space":   "\033[38;2;0;170;255m",
+    "Reality": "\033[38;2;255;61;36m",
+    "Soul":    "\033[38;2;255;157;19m",
+    "Time":    "\033[38;2;23;220;103m",
+    "Mind":    "\033[38;2;255;224;43m",
 }
 
-_GOLD = "\033[33m"
+_GOLD = "\033[38;2;214;154;36m"
 _WHITE = "\033[37m"
 
 BAR_LEN = 12

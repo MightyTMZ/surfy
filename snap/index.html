@@ -9,7 +9,6 @@
   </head>
   <body>
     <main class="stage" id="stage">
-      <div class="grain" aria-hidden="true"></div>
       <div class="ambient ambient--one" aria-hidden="true"></div>
       <div class="ambient ambient--two" aria-hidden="true"></div>
 
@@ -53,16 +52,9 @@
               <radialGradient id="orangeStone"><stop offset="0" stop-color="#fff"/><stop offset=".2" stop-color="#fff19c"/><stop offset=".58" stop-color="#ff9d13"/><stop offset="1" stop-color="#8b3300"/></radialGradient>
               <radialGradient id="greenStone"><stop offset="0" stop-color="#fff"/><stop offset=".2" stop-color="#adffd1"/><stop offset=".58" stop-color="#17dc67"/><stop offset="1" stop-color="#006330"/></radialGradient>
               <radialGradient id="yellowStone"><stop offset="0" stop-color="#fff"/><stop offset=".2" stop-color="#fffcc0"/><stop offset=".58" stop-color="#ffe02b"/><stop offset="1" stop-color="#9c6a00"/></radialGradient>
-              <filter id="stoneGlow" x="-100%" y="-100%" width="300%" height="300%">
-                <feGaussianBlur stdDeviation="8" result="blur" />
-                <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-              </filter>
-              <filter id="handShadow" x="-30%" y="-30%" width="160%" height="170%">
-                <feDropShadow dx="0" dy="22" stdDeviation="18" flood-color="#000" flood-opacity=".65" />
-              </filter>
             </defs>
 
-            <g class="hand" filter="url(#handShadow)">
+            <g class="hand">
               <path class="cuff" d="M139 478 L385 472 L413 624 Q275 655 112 621 Z" fill="url(#shadowGold)" stroke="#d79724" stroke-width="5"/>
               <path d="M151 486 L377 482 L388 596 Q271 625 130 594 Z" fill="url(#gold)" stroke="#f1bd48" stroke-width="4"/>
               <path d="M151 523 Q269 555 383 518" fill="none" stroke="#5d2907" stroke-width="12" opacity=".62"/>
@@ -85,7 +77,7 @@
                 <g class="middle-tip">
                   <path d="M263 151 L272 55 Q276 15 307 14 Q340 15 341 56 L332 151 Q301 171 263 151Z" fill="url(#goldBright)" stroke="#f2c957" stroke-width="6"/>
                   <path d="M268 108 Q302 120 337 110 M272 67 Q305 78 340 69" fill="none" stroke="#713307" stroke-width="10" opacity=".54"/>
-                  <ellipse class="stone stone--red" cx="306" cy="53" rx="18" ry="23" fill="url(#redStone)" filter="url(#stoneGlow)" />
+                  <ellipse class="stone stone--red" cx="306" cy="53" rx="18" ry="23" fill="url(#redStone)" />
                 </g>
               </g>
 
@@ -104,7 +96,7 @@
                 <path d="M67 302 Q92 332 121 360 M111 302 Q136 331 165 351 M73 363 Q104 386 135 405" fill="none" stroke="#713307" stroke-width="9" opacity=".52"/>
                 <path d="M145 399 Q163 411 181 397" fill="none" stroke="#ffda70" stroke-width="5" opacity=".55"/>
                 <path d="M111 329 L169 354" fill="none" stroke="#ffd86d" stroke-width="5" opacity=".65"/>
-                <ellipse class="stone stone--yellow" cx="87" cy="329" rx="19" ry="23" fill="url(#yellowStone)" filter="url(#stoneGlow)" />
+                <ellipse class="stone stone--yellow" cx="87" cy="329" rx="19" ry="23" fill="url(#yellowStone)" />
               </g>
 
               <g class="snap-spark" aria-hidden="true">
@@ -116,7 +108,7 @@
               <path d="M150 301 Q259 253 382 304" fill="none" stroke="#ffdc73" stroke-width="5" opacity=".6"/>
               <path d="M161 442 Q270 476 373 438" fill="none" stroke="#f9cf68" stroke-width="5" opacity=".5"/>
 
-              <g class="stones" filter="url(#stoneGlow)">
+              <g class="stones">
                 <g transform="translate(-24 0)">
                   <ellipse class="stone stone--blue" cx="220" cy="73" rx="18" ry="23" fill="url(#blueStone)" />
                   <ellipse class="stone stone--orange" cx="371" cy="101" rx="17" ry="21" fill="url(#orangeStone)" />

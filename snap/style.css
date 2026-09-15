@@ -37,15 +37,6 @@ button { -webkit-tap-highlight-color: transparent; }
   mask-image: linear-gradient(to bottom, #000, transparent 85%);
 }
 
-.grain {
-  position: absolute;
-  inset: 0;
-  opacity: .08;
-  pointer-events: none;
-  z-index: 20;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
-}
-
 .ambient { position: absolute; border-radius: 50%; filter: blur(2px); pointer-events: none; }
 .ambient--one { width: 4px; height: 4px; top: 26%; left: 28%; background: #cc82ff; box-shadow: 0 0 22px 7px #8532cd; animation: drift 5s ease-in-out infinite; }
 .ambient--two { width: 3px; height: 3px; top: 69%; left: 72%; background: #ffdf8a; box-shadow: 0 0 18px 5px #c1771e; animation: drift 4s 1.2s ease-in-out infinite reverse; }
