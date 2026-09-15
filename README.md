@@ -40,8 +40,11 @@ Build an easily installable skill that turns this grilling process into an inter
 
 * **CLI Progress Bar:**  
   Display a "rounded-down" Infinity Gauntlet progress bar in the CLI output for each response during the grilling phase.  
-  *Example:* If 7 out of 17 required pieces of context are provided (7/17 × 6 stones ≈ 2.47), render 2 out of 6 Infinity Stones filled.
+  <img width="1919" height="1035" alt="screen1" src="https://github.com/user-attachments/assets/f4093e7c-4b72-44e2-82a2-df08eeafcc5c" />
+
 * **CLI Only:**  
   The Infinity Gauntlet progress visualization must be rendered strictly in the CLI (no browser/web implementation).
+  <img width="1911" height="1021" alt="screen2" src="https://github.com/user-attachments/assets/cdc6c478-8e68-4503-93ab-4906a1945762" />
+
 * **Dynamic Scope:**  
   If Claude or Codex decides to extend the required context scope mid-conversation for extra clarity, the Infinity Stone progress will recalculate or reset accordingly.
