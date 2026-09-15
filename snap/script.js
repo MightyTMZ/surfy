@@ -1,19 +1,34 @@
 const stage = document.querySelector('#stage');
 const snapButton = document.querySelector('#snapButton');
 const particles = document.querySelector('#particles');
+const impactPoint = document.querySelector('#impactPoint');
 
 let snapping = false;
 let resetTimer;
 const impactDelay = 0.56;
 
+function positionImpact() {
+  const svg = impactPoint.ownerSVGElement;
+  const matrix = impactPoint.getScreenCTM();
+  if (!matrix) return;
+
+  const point = svg.createSVGPoint();
+  point.x = Number(impactPoint.getAttribute('cx'));
+  point.y = Number(impactPoint.getAttribute('cy'));
+  const screenPoint = point.matrixTransform(matrix);
+  stage.style.setProperty('--impact-x', `${screenPoint.x}px`);
+  stage.style.setProperty('--impact-y', `${screenPoint.y}px`);
+}
+
 function makeParticles() {
   particles.replaceChildren();
   const colors = ['#f4d8ff', '#c77dff', '#8f38d1', '#ffcf60', '#fff6c7'];
+  const viewportScale = Math.min(window.innerWidth, window.innerHeight);
 
   for (let i = 0; i < 84; i += 1) {
     const particle = document.createElement('i');
     const angle = Math.random() * Math.PI * 2;
-    const distance = 140 + Math.random() * 430;
+    const distance = viewportScale * (0.14 + Math.random() * 0.38);
     particle.className = 'particle';
     particle.style.setProperty('--x', `${Math.cos(angle) * distance}px`);
     particle.style.setProperty('--y', `${Math.sin(angle) * distance}px`);
@@ -28,6 +43,7 @@ function makeParticles() {
 function snap() {
   if (snapping) return;
   snapping = true;
+  positionImpact();
   makeParticles();
   stage.classList.add('is-snapping');
   snapButton.disabled = true;
@@ -47,6 +63,8 @@ function reset() {
 }
 
 snapButton.addEventListener('click', snap);
+window.addEventListener('resize', positionImpact);
+positionImpact();
 window.addEventListener('keydown', (event) => {
   if (event.code === 'Space') {
     event.preventDefault();

@@ -15,6 +15,8 @@ body {
 button { -webkit-tap-highlight-color: transparent; }
 
 .stage {
+  --impact-x: 50vw;
+  --impact-y: 38vh;
   position: relative;
   min-height: 100svh;
   overflow: hidden;
@@ -50,7 +52,7 @@ button { -webkit-tap-highlight-color: transparent; }
 .ambient--one { width: 4px; height: 4px; top: 26%; left: 28%; background: #cc82ff; box-shadow: 0 0 22px 7px #8532cd; animation: drift 5s ease-in-out infinite; }
 .ambient--two { width: 3px; height: 3px; top: 69%; left: 72%; background: #ffdf8a; box-shadow: 0 0 18px 5px #c1771e; animation: drift 4s 1.2s ease-in-out infinite reverse; }
 
-.gauntlet-zone { position: absolute; z-index: 3; width: min(88vw, 73svh, 680px); aspect-ratio: 520 / 640; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+.gauntlet-zone { position: absolute; z-index: 3; width: 680px; max-width: 82vw; max-height: 88vh; max-height: 88svh; aspect-ratio: 520 / 640; top: 50%; left: 50%; transform: translate(-50%, -50%); }
 .gauntlet { position: absolute; z-index: 5; inset: 0; padding: 0; border: 0; background: transparent; cursor: pointer; transform-origin: 50% 72%; filter: saturate(.88); transition: filter .35s ease, transform .35s ease; }
 .gauntlet:hover { filter: saturate(1.08) brightness(1.06); transform: translateY(-7px) rotate(-1deg); }
 .gauntlet:focus-visible { outline: 2px solid #ce8fff; outline-offset: 8px; border-radius: 50%; }
@@ -66,20 +68,18 @@ button { -webkit-tap-highlight-color: transparent; }
 .stone { transform-box: fill-box; transform-origin: center; animation: stonePulse 2.2s ease-in-out infinite; }
 .stone--red { animation-delay: -.3s; }.stone--orange { animation-delay: -.6s; }.stone--green { animation-delay: -.9s; }.stone--purple { animation-delay: -1.2s; }.stone--yellow { animation-delay: -1.5s; }
 
-.shockwave { position: absolute; z-index: 1; width: 32%; aspect-ratio: 1; top: 38%; left: 49%; border: 2px solid #f4dcff; border-radius: 50%; opacity: 0; transform: translate(-50%,-50%) scale(.2); }
-.flash { position: fixed; z-index: 50; inset: 0; opacity: 0; pointer-events: none; background: radial-gradient(circle at 50% 38%, white 0, #d3a3ff 10%, rgba(115,34,196,.8) 28%, transparent 70%); }
+.shockwave { position: absolute; z-index: 1; width: 32%; aspect-ratio: 1; top: 34.375%; left: 43.46%; border: 2px solid #f4dcff; border-radius: 50%; opacity: 0; transform: translate(-50%,-50%) scale(.2); }
+.flash { position: fixed; z-index: 50; inset: 0; opacity: 0; pointer-events: none; background: radial-gradient(circle at var(--impact-x) var(--impact-y), white 0, #d3a3ff 10%, rgba(115,34,196,.8) 28%, transparent 70%); }
 .particles { position: fixed; z-index: 42; inset: 0; pointer-events: none; }
-.particle { position: absolute; left: 50%; top: 38%; width: var(--size); height: var(--size); border-radius: 50%; background: var(--color); box-shadow: 0 0 8px var(--color); animation: scatter var(--duration) cubic-bezier(.2,.65,.2,1) forwards; animation-delay: var(--delay); }
+.particle { position: absolute; left: var(--impact-x); top: var(--impact-y); width: var(--size); height: var(--size); border-radius: 50%; background: var(--color); box-shadow: 0 0 8px var(--color); animation: scatter var(--duration) cubic-bezier(.2,.65,.2,1) forwards; animation-delay: var(--delay); }
 
 .snap-spark { opacity: 0; transform-box: fill-box; transform-origin: center; }
-.finger { transform: translateX(-24px); transform-box: fill-box; }
+.finger { transform-box: view-box; }
 .middle-tip { transform-box: view-box; transform-origin: 300px 130px; }
-.is-snapping .finger--thumb { animation: thumbSnap .78s cubic-bezier(.45,0,.2,1) forwards; transform-origin: 88% 76%; }
+.finger--thumb { transform-origin: 180px 380px; }
+.is-snapping .finger--thumb { animation: thumbSnap .78s cubic-bezier(.45,0,.2,1) forwards; }
 .is-snapping .middle-tip { animation: middleSnap .76s cubic-bezier(.45,0,.18,1) forwards; }
-.is-snapping .finger--index { animation: indexReact .72s cubic-bezier(.45,0,.25,1) forwards; transform-origin: 50% 95%; }
-.is-snapping .finger--ring, .is-snapping .finger--pinky { animation: curledReact .72s cubic-bezier(.45,0,.25,1) forwards; transform-origin: 50% 94%; }
 .is-snapping .snap-spark { animation: contactSpark .24s .36s ease-out forwards; }
-.is-snapping .gauntlet { animation: handKick .48s .56s cubic-bezier(.2,.8,.3,1) both; }
 .is-snapping .shockwave { animation: shock 1s .56s ease-out forwards; }
 .is-snapping .flash { animation: flash .85s .56s ease-out forwards; }
 .is-snapping .orbit { animation-play-state: paused; }
@@ -89,12 +89,9 @@ button { -webkit-tap-highlight-color: transparent; }
 @keyframes drift { 50% { transform: translate(24px,-18px); opacity: .45; } }
 @keyframes orbit { to { transform: translate(-50%,-50%) rotate(360deg); } }
 @keyframes stonePulse { 50% { transform: scale(.88); opacity: .78; } }
-@keyframes thumbSnap { 0% { transform: translateX(-24px) rotate(0); } 46%,57% { transform: translateX(-24px) rotate(88deg); } 100% { transform: translateX(-24px) rotate(76deg); } }
+@keyframes thumbSnap { 0% { transform: rotate(0); } 46%,57% { transform: rotate(88deg); } 100% { transform: rotate(76deg); } }
 @keyframes middleSnap { 0% { transform: rotate(0); } 46%,57% { transform: rotate(-140deg); } 100% { transform: rotate(-180deg); } }
-@keyframes indexReact { 0%,45% { transform: translateX(-24px); } 100% { transform: translate(-29px,8px) rotate(-5deg); } }
-@keyframes curledReact { 0%,45% { transform: translateX(-24px); } 100% { transform: translate(-24px,5px) rotate(3deg); } }
 @keyframes contactSpark { 0% { opacity: 0; transform: scale(.25) rotate(0); } 35% { opacity: 1; transform: scale(1.15) rotate(12deg); } 100% { opacity: 0; transform: scale(1.8) rotate(28deg); } }
-@keyframes handKick { 0% { transform: rotate(0); } 52% { transform: rotate(-4deg) scale(1.02); } 62% { transform: rotate(5deg) scale(.97); } 100% { transform: rotate(0) scale(1); } }
 @keyframes shock { 0% { opacity: .9; transform: translate(-50%,-50%) scale(.2); } 100% { opacity: 0; transform: translate(-50%,-50%) scale(5); border-width: .2px; } }
 @keyframes flash { 0% { opacity: .9; } 12% { opacity: 1; } 100% { opacity: 0; } }
 @keyframes scatter { 0% { opacity: 1; transform: translate(-50%,-50%) scale(1); } 100% { opacity: 0; transform: translate(var(--x),var(--y)) scale(.1); } }
