@@ -13,29 +13,6 @@ Build an easily installable skill that turns this grilling process into an inter
 
 ---
 
-### **Implementation Plan**
-
-1. **Fork & Integrate:**  
-   Fork a "grill me" skill (or close equivalent) and modify it to trigger Surfy once full clarity and context are achieved.
-
-2. **Handoff Prompt:**  
-   Display a completion message such as:  
-   > *"Great! I have all the context I need. Time to snap your Infinity Gauntlet so I can start building!"*
-
-3. **Launch Surfy:**  
-   Prompt the user to launch the Surfy software (an OpenCV script powered by Google MediaPipe).
-
-4. **Camera Setup & Fallback:**  
-   Prompt the user to open their webcam. If they cannot or prefer not to use a camera, launch a local desktop GUI featuring an on-screen button to click and trigger the snap.
-
-5. **The Snap:**  
-   The user snaps their fingers on camera (detected via Google MediaPipe) or clicks the Gauntlet button in the GUI—and the automated workflow begins!
-
-6. **Reset / State:**  
-   For subsequent prompts, Claude will hide the Infinity Stones unless another grilling sequence is triggered.
-
----
-
 ### **UI / UX Requirements**
 
 * **CLI Progress Bar:**  
