@@ -1,11 +1,9 @@
 const stage = document.querySelector('#stage');
 const snapButton = document.querySelector('#snapButton');
-const snapCta = document.querySelector('#snapCta');
-const replayButton = document.querySelector('#replayButton');
 const particles = document.querySelector('#particles');
-const helper = document.querySelector('#helper');
 
 let snapping = false;
+let resetTimer;
 const impactDelay = 0.56;
 
 function makeParticles() {
@@ -33,30 +31,22 @@ function snap() {
   makeParticles();
   stage.classList.add('is-snapping');
   snapButton.disabled = true;
-  snapCta.disabled = true;
-  helper.textContent = 'Reality is shifting…';
 
   if ('vibrate' in navigator) navigator.vibrate([35, 30, 70]);
 
   window.setTimeout(() => stage.classList.add('is-complete'), 1650);
-  window.setTimeout(() => {
-    helper.textContent = 'Sequence complete';
-  }, 2150);
+  resetTimer = window.setTimeout(reset, 2850);
 }
 
 function reset() {
   stage.classList.remove('is-snapping', 'is-complete');
   snapButton.disabled = false;
-  snapCta.disabled = false;
-  helper.textContent = 'Click the gauntlet or press space';
   particles.replaceChildren();
   snapping = false;
-  snapCta.focus();
+  window.clearTimeout(resetTimer);
 }
 
 snapButton.addEventListener('click', snap);
-snapCta.addEventListener('click', snap);
-replayButton.addEventListener('click', reset);
 window.addEventListener('keydown', (event) => {
   if (event.code === 'Space') {
     event.preventDefault();

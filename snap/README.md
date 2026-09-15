@@ -8,4 +8,4 @@ Open `index.html` directly in a browser, or serve the repository and visit `/sna
 python3 -m http.server 8000
 ```
 
-Then open <http://localhost:8000/snap/>. Click the gauntlet, click the button, or press Space to run the animation.
+Then open <http://localhost:8000/snap/>. Click the gauntlet or press Space to run the animation. It resets automatically after each snap.
