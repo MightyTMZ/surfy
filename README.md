@@ -1,22 +1,47 @@
-When Claude/Codex sks you clarifying questions repeatedly (grill) on an idea, you have to asnwer questions but when you are done, there is little to no rewarding feeling. 
+# Surfy and the Infinity Gauntlet Skill
 
-We want to build something that can be easily installed. 
+> *Snap out of the prompt loop.* 🫰
+<img width="413" height="483" alt="image" src="https://github.com/user-attachments/assets/99d4ce0d-0946-4b02-8ccc-c12a4e5560ed" />
 
-Plan: 
+---
 
-- Fork a "grill me" skill or close equilvalent
-- Modify it to call Surfy once full clarity or context is achieved
-- Finish message is somehting like "Great! Now I have all the context I need. It's time to snap your infinity gauntlet to make me start producing!" (the user may choose not to turn on their webcam and so they can click on an on screen button)
-- it then prompts the user to start the Surfy software (OpenCV script + Google Mediapipe)
-- it then prompts via a question (not permission prompt) for the user to open their web cam
-- if they are unable to, it will boot up a local software gui that they can click the gauntlet to snap
-- the web cam opens, then the user snaps their finger. (use Google media pipe)
-- then the work begins! 
-- for any subsequent prompts, Claude will not show the infinity stones unless another grill occurence happens
+### **Problem**
+When Claude or Codex repeatedly grills you with clarifying questions on an idea, answering them feels like a chore with little to no reward at the end.
 
+### **Goal**
+Build an easily installable skill that turns this grilling process into an interactive, rewarding experience.
 
-UI/UX
-- an "rounded down" infinity gauntlet progress bar that Claude sends back each time in each response. For example, agent is asking for 17 pieces of confirming evidence and 7 of them are provided already by the user, then only 2 infinite stones should she filled in
-- the infinite gauntlet should only be rendered in the CLI. Please do not build it for browser or the web
-- Claude / Codex may decide to extend the number of context required for extra clarity. In that case, the infinity stone progress should be resetted
+---
 
+### **Implementation Plan**
+
+1. **Fork & Integrate:**  
+   Fork a "grill me" skill (or close equivalent) and modify it to trigger Surfy once full clarity and context are achieved.
+
+2. **Handoff Prompt:**  
+   Display a completion message such as:  
+   > *"Great! I have all the context I need. Time to snap your Infinity Gauntlet so I can start building!"*
+
+3. **Launch Surfy:**  
+   Prompt the user to launch the Surfy software (an OpenCV script powered by Google MediaPipe).
+
+4. **Camera Setup & Fallback:**  
+   Prompt the user to open their webcam. If they cannot or prefer not to use a camera, launch a local desktop GUI featuring an on-screen button to click and trigger the snap.
+
+5. **The Snap:**  
+   The user snaps their fingers on camera (detected via Google MediaPipe) or clicks the Gauntlet button in the GUI—and the automated workflow begins!
+
+6. **Reset / State:**  
+   For subsequent prompts, Claude will hide the Infinity Stones unless another grilling sequence is triggered.
+
+---
+
+### **UI / UX Requirements**
+
+* **CLI Progress Bar:**  
+  Display a "rounded-down" Infinity Gauntlet progress bar in the CLI output for each response during the grilling phase.  
+  *Example:* If 7 out of 17 required pieces of context are provided (7/17 × 6 stones ≈ 2.47), render 2 out of 6 Infinity Stones filled.
+* **CLI Only:**  
+  The Infinity Gauntlet progress visualization must be rendered strictly in the CLI (no browser/web implementation).
+* **Dynamic Scope:**  
+  If Claude or Codex decides to extend the required context scope mid-conversation for extra clarity, the Infinity Stone progress will recalculate or reset accordingly.
