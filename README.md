@@ -10,3 +10,8 @@ When Claude or Codex repeatedly grills you with clarifying questions on an idea,
 
 ### **Goal**
 Build an easily installable skill that turns this grilling process into an interactive, rewarding experience.
+
+### Install Instructions
+
+- Clone this repository
+- Prompt your coding agent to install Surfy (CLI + Python package + Mediapipe model)
